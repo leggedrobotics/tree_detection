@@ -1,0 +1,13 @@
+
+cropBox:
+  minX: 20
+  maxX: 40.0
+  minY: -10.0
+  maxY: 10.0
+  minZ: -20.0
+  maxZ: 20.0
+  is_apply: false
+
+random_downsample:
+  is_apply: true
+  desired_n_points: 90000000

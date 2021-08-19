@@ -1,0 +1,13 @@
+# Get the next approach pose to the tree
+# Request.
+float64 x
+float64 y
+float64 dx
+float64 dy
+float64 minZ
+float64 maxZ
+bool isUseCroppingAroundLocation
+----
+# Response.
+string 			 status_message
+bool   			 success

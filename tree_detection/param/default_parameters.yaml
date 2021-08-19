@@ -1,0 +1,24 @@
+time_step: 0.5
+
+cropBox:
+  ground_plane: 
+    minX: -10.0
+    maxX: 10.0
+    minY: -10.0
+    maxY: 10.0
+    minZ: -1.0
+    maxZ: 2.5
+
+
+
+# Tree specific parameters
+tree:
+  maxDiameter: 1.5
+  minHeight: 0.1
+  minPoints: 6000
+  maxPoints: 500000
+  clusterTolerance: 0.3 # [m] 
+  minEigenvectorAlignment: 0.9 # [0, 1] Alignment of principle axis along gravity. was 0.8
+  minTreeDistance: 3.0
+  isRunDetection: false
+

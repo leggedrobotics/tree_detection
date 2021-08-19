@@ -1,0 +1,61 @@
+ground_plane_removal:
+  cropbox: 
+    crop_box_minX: -100.0
+    crop_box_maxX: 100.0
+    crop_box_minY: -100.0
+    crop_box_maxY: 100.0
+    crop_box_minZ: 0.0
+    crop_box_maxZ: 20.0
+  elevation_map:
+    height_margin_above_surface: 0.2
+    num_processing_threads: 7
+    is_use_median_filter: true
+    median_filtering_radius: 2.0
+    median_filter_points_downsample_factor: 1
+    cloud_transform:
+      translation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      rotation: #intrinsic rotation X-Y-Z (r-p-y)sequence
+        r: 0.0
+        p: 0.0
+        y: 0.0
+    cluster_extraction:
+      cluster_tolerance: 0.02
+      min_num_points: 1
+      max_num_points: 1000000
+      use_max_height_as_cell_elevation: false
+    outlier_removal:
+      is_remove_outliers: false
+      mean_K: 10
+      stddev_threshold: 1.0
+    downsampling:
+      is_downsample_cloud: false
+      voxel_size:
+        x: 0.02
+        y: 0.02
+        z: 0.02 
+    grid_map:
+      min_num_points_per_cell: 1
+      max_num_points_per_cell: 100000
+      resolution: 0.5
+  
+
+
+
+# Tree specific parameters
+tree_detection:
+  max_diameter: 3.0
+  min_height: 0.8
+  min_num_points: 200
+  max_num_points: 5000000
+  cluster_tolerance: 0.1 # [m] 
+  min_eigenvector_alignment: 0.7 # [0, 1] Alignment of principle axis along gravity. was 0.8
+  tree_marker_radius_inflate_factor: 1.3
+  tree_marker_height_inflate_factor: 1.3
+  tree_marker_opacity: 1.0
+  is_print_discarded_clusters: false
+  is_print_timing: true
+  
+  

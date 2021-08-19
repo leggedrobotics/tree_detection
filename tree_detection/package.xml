@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>tree_detection</name>
+  <version>0.5.0</version>
+  <description>Tree detector from point cloud maps</description>
+
+  <license>BSD</license>
+
+  <author email="jelavice@ethz.ch">EJ</author>
+  <maintainer email="jelavice@ethz.ch">EJr</maintainer>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>pcl</depend>
+
+
+</package>

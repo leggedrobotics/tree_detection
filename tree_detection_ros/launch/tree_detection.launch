@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+
+	<arg name="launch_prefix" default="" />
+	<arg name="pcd_filepath"  default="$(find tree_detection_ros)/data/forest.pcd"/>
+	<arg name="launch_rviz" default="true" />
+	<arg name="rviz_config_file" default="$(find tree_detection_ros)/rviz/default.rviz" />
+	<arg name="config_filepath" default="$(find tree_detection_ros)/config/tree_detection.yaml" />
+	<arg name="ground_removal_strategy" default="elevation_map" doc="cropbox or elevation_map"/>
+	
+		<!-- Launch tree_detection node -->
+	<node name="tree_detection_node" pkg="tree_detection_ros"
+		type="tree_detection_node" output="screen"
+		launch-prefix="$(arg launch_prefix)">
+		<param name="pcd_filepath" value="$(arg pcd_filepath)"/>
+		<param name="config_filepath" value="$(arg config_filepath)"/>
+		<param name="ground_removal_strategy" value="$(arg ground_removal_strategy)"/>
+	</node>
+
+	<node name="rviz_tree_detection" pkg="rviz" type="rviz" args="-d $(arg rviz_config_file)" required="true"
+		if="$(arg launch_rviz)" />
+	
+
+
+</launch>
