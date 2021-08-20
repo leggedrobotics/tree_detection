@@ -8,7 +8,7 @@ ground_plane_removal:
     crop_box_maxZ: 20.0
   elevation_map:
     min_height_above_ground: 0.2
-    max_height_above_ground: 5.0
+    max_height_above_ground: 3.5
     num_processing_threads: 7
     is_use_median_filter: true
     median_filtering_radius: 2.0
@@ -47,7 +47,7 @@ ground_plane_removal:
 
 # Tree specific parameters
 tree_detection:
-  max_diameter: 3.0
+  max_diameter: 4.0
   min_height: 0.8
   min_num_points: 200
   max_num_points: 5000000
