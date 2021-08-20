@@ -31,7 +31,8 @@ struct GroundPlaneRemoverParam {
 
 struct ElevationMapGroundPlaneRemoverParam : public GroundPlaneRemoverParam {
 	grid_map::grid_map_pcl::PclLoaderParameters pclConverter_;
-	double heightMarginAboeTheSurface_ = 0.1;
+	double minHeightAboveGround_ = 0.1;
+	double maxHeightAboveGround_ = 8.0;
 	double medianFilteringRadius_ = 2.0;
 	int medianFilterDownsampleFactor_  = 1;
 	bool isUseMedianFiltering_ = true;
