@@ -11,18 +11,11 @@ set(CATKIN_PACKAGE_DEPENDENCIES
   tree_detection
   ground_plane_removal
   pcl_conversions
-  pcl_ros
   sensor_msgs
-  std_msgs
   visualization_msgs
-  geometry_msgs
   roscpp
-  tf2
-  tf2_ros
-  tf2_geometry_msgs
   roslib
   jsk_recognition_msgs
-  message_generation
 )
 
 set (SRC_FILES
@@ -37,16 +30,6 @@ find_package(catkin REQUIRED
     ${CATKIN_PACKAGE_DEPENDENCIES}
 )
 
-add_service_files(
-  DIRECTORY
-    srv
-)
-
-generate_messages(
-  DEPENDENCIES
-    std_msgs
-)
-
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -58,7 +41,6 @@ catkin_package(
     yaml-cpp
   CATKIN_DEPENDS
     ${CATKIN_PACKAGE_DEPENDENCIES}
-    message_runtime
   DEPENDS
     PCL
 )
