@@ -4,9 +4,9 @@ WORK IN PROGRESS. Cannot be compiled until a PR for grid_map is merged.
 
 ## Overview
 
-This package provides tree detection on pointcloud data. In particular, it is designed for detecting tree trunks which could later be used for tree grabbing and harvesting. It does not provide the full tree segmentation. The package was developed in the scope of [1].
+This package provides tree detection on pointcloud data. In particular, it is designed for detecting tree trunks which could later be used for tree grabbing and harvesting. It does not provide the full tree segmentation with the crown. The package was developed in the scope of [1] (see below).
 
-The functionality was developed for an autonomous harvester use_case where the goal was to detect trees in a local map. Nonetheless, it can also be used on large maps to compute tree coordinates or get an estimate of tree density.
+The functionality was developed for an autonomous harvester use case where the goal is to detect trees in a local map. Nonetheless, it can also be used on large maps to compute tree coordinates or get an estimate of tree density.
 
 Released under [BSD 3-Clause license](LICENSE).
 
@@ -43,6 +43,22 @@ Build with:
 ```bash
 catkin build tree_detection_ros
 ```
+
+## Usage
+
+The example datasets can be downloaded [here](https://drive.google.com/drive/folders/1m_sRtMN5n6-ShQvnbCfedKIVpoupao5u?usp=sharing). The folder contains three forest patches, one without clutter (forest3.pcd) and two with a lot of branch clutter (forest1.pcd and forest2.pcd). 
+
+Modify the `pcd_filepath` inside the `tree_detection.launch` to point the location where the point clouds `.pcd` files are stored.
+
+Run with:
+```bash
+roslaunch tree_detection_ros tree_detection.launch
+```
+
+The node publishes the input pointcloud, the pointcloud with the ground plane removed and the elevation map used to remove the ground plane. 
+
+
+
 
 ## Publications
 
