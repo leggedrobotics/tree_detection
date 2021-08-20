@@ -15,8 +15,34 @@ Released under [BSD 3-Clause license](LICENSE).
 **Maintainer:** Edo Jelavic, [jelavice@ethz.ch](jelavice@ethz.ch)
 
 
+## Packages in this repo
+This repository consists of following packages:
+
+* ***ground_plane_removal*** is a lightweight package for ground plane removal. 
+* ***tree_detection*** implements the core algorithm for tree detection. 
+* ***tree_detection_ros*** adds visualization and I/O handling for easier usage. This package is tightly integrated with ROS.
+
+
 ## Installation
 
+Clone the following dependencies:
+```bash
+# in your source folder `src`
+git clone https://github.com/ANYbotics/grid_map.git
+```
+
+Install the ROS and library dependencies with:
+```bash
+sudo apt install -y ros-noetic-pcl-ros ros-noetic-pcl-conversions ros-noetic-jsk-recognition-msgs ros-noetic-tf2-geometry 
+# OR, use rosdep in your source folder `src` 
+sudo rosdep install -yr --from-paths .
+```
+Recommended to build in release mode for performance (`catkin config -DCMAKE_BUILD_TYPE=Release`)
+
+Build with:  
+```bash
+catkin build tree_detection_ros
+```
 
 ## Publications
 
