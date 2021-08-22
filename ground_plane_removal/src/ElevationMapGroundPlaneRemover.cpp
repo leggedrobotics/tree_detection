@@ -134,7 +134,7 @@ void ElevationMapGroundPlaneRemover::removeGroundPlane() {
 		snapToMapLimits(gridMap, &x, &y);
 		const double z = inputCloud_->points[i].z;
 		const double h = gridMap.atPosition(elevationLayer, grid_map::Position(x, y));
-		const bool isSkip = z < h + param_.heightMarginAboeTheSurface_;
+		const bool isSkip = (z < h + param_.minHeightAboveGround_) || ( z > h + param_.maxHeightAboveGround_ );
 		if (isSkip) {
 			continue;
 		}

@@ -3,7 +3,7 @@
 
 
 	<arg name="launch_prefix" default="" />
-	<arg name="pcd_filepath"  default="$(find tree_detection_ros)/data/forest.pcd"/>
+	<arg name="pcd_filepath"  default="$(find tree_detection_ros)/data/forest1.pcd"/>
 	<arg name="launch_rviz" default="true" />
 	<arg name="rviz_config_file" default="$(find tree_detection_ros)/rviz/default.rviz" />
 	<arg name="config_filepath" default="$(find tree_detection_ros)/config/tree_detection.yaml" />

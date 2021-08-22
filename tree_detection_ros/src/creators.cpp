@@ -28,7 +28,8 @@ void loadParameters(const std::string &filename, ground_removal::ElevationMapGro
 
 	p->medianFilteringRadius_  = groundRemoval["median_filtering_radius"].as<double>();
 	p->medianFilterDownsampleFactor_ = groundRemoval["median_filter_points_downsample_factor"].as<int>();
-	p->heightMarginAboeTheSurface_ = groundRemoval["height_margin_above_surface"].as<double>();
+	p->minHeightAboveGround_ = groundRemoval["min_height_above_ground"].as<double>();
+	p->maxHeightAboveGround_ = groundRemoval["max_height_above_ground"].as<double>();
 	p->isUseMedianFiltering_ = groundRemoval["is_use_median_filter"].as<bool>();
 }
 
