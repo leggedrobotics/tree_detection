@@ -14,6 +14,12 @@ Released under [BSD 3-Clause license](LICENSE).
 
 **Maintainer:** Edo Jelavic, [jelavice@ethz.ch](jelavice@ethz.ch)
 
+Examples of tree detection on point clouds:
+
+| forest 2 (ground removed)| forest 3 | forest 4 |
+|:--------:|------------------|--------------|
+|[![forest2](doc/forest2.jpg)](doc/forest2.jog)|[![forest3](doc/forest3.jpg)](doc/forest3.jpg)|[![forest4](doc/forest4.jpg)](doc/forest4.jpg)|
+
 
 ## Packages in this repo
 This repository consists of following packages:
@@ -25,9 +31,9 @@ This repository consists of following packages:
 
 ## Algorithm description
 
-The algorithm first attempts to remove the gound plane. This can be done using two strategies, either a simple box filter (for which the user needs to provide the cropping region) or using an elevation map. In case the elevation map strategy is used, the algorithm first computes the elevation map and then uses it to remove the ground plane. The elevaiton map strategy is implemented in a different package (see the link [here](https://github.com/ANYbotics/grid_map/tree/master/grid_map_pcl)). The elevation map extraction algorithm is described in more detail in [1]. Before proceeding with the pointcloud processing the median filter is applied to the elevation map.
+The algorithm first attempts to remove the gound plane. This can be done using two strategies, either a simple box filter (for which the user needs to provide the cropping region) or using an elevation map. In case the elevation map strategy is used, the algorithm first computes the elevation map and then uses it to remove the ground plane. The elevaiton map computation is implemented in a different package (see the link [here](https://github.com/ANYbotics/grid_map/tree/master/grid_map_pcl)) and a more detailed description can be found in [1]. Before proceeding with the pointcloud processing the median filter is applied to the elevation map.
 
-Once the ground plane is removed, the algorithm proceeds with Euclidean cluster extraction and performs some checks on those clusters to make sure that the extracted cluster is indeed a tree. The more detailed description can be found in [1].
+Once the ground plane is removed, the algorithm proceeds with Euclidean cluster extraction and performs some checks to make sure that the extracted clusters aree indeed trees. The more detailed description can be found in [1].
 
 ## Installation
 
@@ -52,29 +58,30 @@ catkin build tree_detection_ros
 
 ## Usage
 
-The example datasets can be downloaded [here](https://drive.google.com/drive/folders/1m_sRtMN5n6-ShQvnbCfedKIVpoupao5u?usp=sharing). The folder contains three forest patches, one without clutter (forest3.pcd) and two with a lot of branch clutter (forest1.pcd and forest2.pcd). 
+The example datasets can be downloaded [here](https://drive.google.com/drive/folders/1m_sRtMN5n6-ShQvnbCfedKIVpoupao5u?usp=sharing). The folder contains five forest patches.  One dataset has almost no clutter (forest3.pcd) and two have a lot of branch clutter (forest1.pcd and forest2.pcd). 
 
-This package can also work with forests on inclined surfaces. Two examples are provided with dense maps (forest4.pcd and forest5.pcd). Note that for these datasets, we recoomend to use a slightly different tuning. See `tree_detection_dataset_4_and_5.yaml`. 
+This package can also work with forests on inclined surfaces and we provide two examples (forest4.pcd and forest5.pcd). The point clouds forest4.pcd and forest5.pcd were taken from the [The Montmorency dataset](https://norlab.ulaval.ca/research/montmorencydataset/) and downsampled. Note that for these datasets, we recommend to use a slightly different tuning. See `tree_detection_dataset_4_and_5.yaml`.
 
-Modify the `pcd_filepath` inside the `tree_detection.launch` to point the location where the point clouds `.pcd` files are stored.
+Modify the `pcd_filepath` inside the `tree_detection.launch` to point the location where the point clouds `.pcd` files are stored.  
+If you want to use a different configuraiton file, you will have to modify the `config_filepath` as well. The ground plane removal strategy can be selected by setting the value of `ground_removal_strategy` parameter.
 
 Run with:
 ```bash
 roslaunch tree_detection_ros tree_detection.launch
 ```
-The node publishes the input pointcloud, the pointcloud with the ground plane removed and the elevation map used to remove the ground plane. The detected trees will be marked with green cylinders and bounding boxes. The visualization shoud appar in the Rviz window.
+The node publishes the input pointcloud, the pointcloud with the ground removed and the elevation map used to remove the ground plane. The detected trees will be marked with green cylinders and bounding boxes. The visualization should appar in the Rviz window.
 
-Note that the computation can last for up to 7-9 minutes for larger datasets (e.g. forest4.pcd and forest5.pcd). This can be shortened if you downsample or voxelize the pointcloud.
+Note that the computation can last for up to 7-9 minutes for larger datasets (e.g. forest4.pcd and forest5.pcd). This can be shortened with different tuning, downsampling or voxelizing the point clouds.
 
 
 ## Parameters
 
-* `ground_plane_removal/cropbox` - Limits (XYZ) for the ground plane removal. The points contained within the box specified by the user will be removed and the tree detection will proceed on the remaining pointcloud.
+* `ground_plane_removal/cropbox` - Limits (XYZ) for the ground plane removal. The points contained within the box specified by the user will be kept and the rest will be removed. The tree detection will proceed on the remaining points.
 * `ground_plane_removal/elevation_map` - Parameters for elevation map extraction from the pointcloud are described [here](https://github.com/ANYbotics/grid_map/tree/master/grid_map_pcl). We add a couple of new parameters which are listed below.
-* `ground_plane_removal/min_height_above_ground` - minimal height above the extracted elevation map to keep the points. Any points below this threshold will be discarded.
+* `ground_plane_removal/min_height_above_ground` - minimal height above the extracted elevation map to keep the points. Any points below this threshold will be discarded. Note that this number can also be negative.
 * `ground_plane_removal/max_height_above_ground` - maximal height above the elevation map to keep the points. Any points above this threshold will be discarded.
-* `ground_plane_removal/is_use_median_filter` - Whether to apply the median filter on the elevation map.
-* `ground_plane_removal/median_filtering_radius` - Median filtering radius for the elevation map. For wach cell, the filter will take the data from the neighbouring cells withing specified radius and apply the median filter. The number of neighbouring points depends on the cell size and this parameter.
+* `ground_plane_removal/is_use_median_filter` - whether to apply the median filter on the elevation map.
+* `ground_plane_removal/median_filtering_radius` - median filtering radius for the elevation map. For each cell, the filter will take the data from the neighbouring cells withing specified radius and apply the median filter. The number of neighbouring points depends on the cell size and this parameter.
 * `ground_plane_removal/median_filter_points_downsample_factor` - If one wishes to have sparser coverage, you can apply downsampling. The algorithm will calculate all the points within the specified radius and divide their number by this factor. E.g., (if there are 50 neighbouring points within the radius and the downsample factor is set to 5, 10 points will be used for median filtering).
 
 ## Publications
