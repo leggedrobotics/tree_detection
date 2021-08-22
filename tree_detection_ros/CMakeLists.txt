@@ -84,17 +84,6 @@ target_link_libraries(tree_detection_node
   ${catkin_LIBRARIES}
 )
 
-
-
-#add_executable(process_pcd_node
-#  src/process_pcd_node.cpp
-#)
-#
-#target_link_libraries(process_pcd_node
-#  ${catkin_LIBRARIES}
-#  ${PROJECT_NAME}
-#)
-
 #############
 ## Install ##
 #############
