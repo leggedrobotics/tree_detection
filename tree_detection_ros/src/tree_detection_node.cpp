@@ -37,8 +37,15 @@ int main(int argc, char **argv) {
 	groundRemover->removeGroundPlane();
 	printTimeElapsed(startTime,"Time elapsed for ground removal: ");
 
-	//here detect the trees
+	//publish the cloud without ground plane
+	ros::Publisher noGroundCloudPub = nh->advertise<sensor_msgs::PointCloud2>("no_ground_cloud", 1, true);
 	PointCloud::ConstPtr noGroundPlaneCloud = groundRemover->getCloudWithoutGroundPlanePtr();
+	sensor_msgs::PointCloud2 noGroundCloudMsg = toRos(*noGroundPlaneCloud);
+	noGroundCloudMsg.header.frame_id = frameId;
+	noGroundCloudMsg.header.stamp = ros::Time::now();
+	noGroundCloudPub.publish(noGroundCloudMsg);
+
+	//here detect the trees
 	treeDetector.setInputPointCloud(*noGroundPlaneCloud);
 	treeDetector.setCloudFrameId(frameId);
 	treeDetector.setCloudTimestamp(ros::Time::now());
@@ -46,11 +53,7 @@ int main(int argc, char **argv) {
 	printTimeElapsed(startTime,"Total time: ");
 
 
-	ros::Publisher noGroundCloudPub = nh->advertise<sensor_msgs::PointCloud2>("no_ground_cloud", 1, true);
-	sensor_msgs::PointCloud2 noGroundCloudMsg = toRos(*noGroundPlaneCloud);
-	noGroundCloudMsg.header.frame_id = frameId;
-	noGroundCloudMsg.header.stamp = ros::Time::now();
-	noGroundCloudPub.publish(noGroundCloudMsg);
+
 
 	ros::spin();
 
