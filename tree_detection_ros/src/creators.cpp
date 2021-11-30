@@ -24,7 +24,6 @@ void loadParameters(const std::string &filename, ground_removal::ElevationMapGro
 	grid_map::grid_map_pcl::PclLoaderParameters pclLoaderParam;
 	pclLoaderParam.loadParameters(groundRemoval);
 	p->pclConverter_ = pclLoaderParam;
-	std::cout << pclLoaderParam.get().gridMap_.resolution_ << std::endl;
 
 	p->medianFilteringRadius_  = groundRemoval["median_filtering_radius"].as<double>();
 	p->medianFilterDownsampleFactor_ = groundRemoval["median_filter_points_downsample_factor"].as<int>();

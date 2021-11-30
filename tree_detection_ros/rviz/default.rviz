@@ -9,9 +9,9 @@ Panels:
         - /PointCloud21/Autocompute Value Bounds1
         - /MarkerArray1
         - /MarkerArray1/Namespaces1
+        - /BoundingBoxArray1
         - /PointCloud22/Autocompute Value Bounds1
         - /GridMap1
-        - /GridMap1/Status1
       Splitter Ratio: 0.5
     Tree Height: 839
   - Class: rviz/Selection
@@ -118,8 +118,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 5.043700695037842
-        Min Value: -3.0446665287017822
+        Max Value: 16.1895809173584
+        Min Value: -1.2812024354934692
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -127,7 +127,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: AxisColor
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Min Color: 0; 0; 0
@@ -135,25 +135,28 @@ Visualization Manager:
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
-      Size (Pixels): 3
+      Size (Pixels): 2
       Size (m): 0.03999999910593033
-      Style: Flat Squares
+      Style: Points
       Topic: /tree_detection_node/no_ground_cloud
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Class: grid_map_rviz_plugin/GridMap
       Color: 200; 200; 200
       Color Layer: elevation
       Color Transformer: GridMapLayer
-      Enabled: true
+      ColorMap: default
+      Enabled: false
+      Grid Cell Decimation: 1
+      Grid Line Thickness: 0.10000000149011612
       Height Layer: elevation
       Height Transformer: GridMapLayer
       History Length: 1
-      Invert Rainbow: false
+      Invert ColorMap: false
       Max Color: 255; 255; 255
       Max Intensity: 10
       Min Color: 0; 0; 0
@@ -162,8 +165,8 @@ Visualization Manager:
       Show Grid Lines: true
       Topic: /tree_detection_node/elevation_map
       Unreliable: false
-      Use Rainbow: true
-      Value: true
+      Use ColorMap: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 255; 255; 255
@@ -192,7 +195,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 104.87268829345703
+      Distance: 132.78628540039062
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -200,17 +203,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -9.833745956420898
-        Y: -7.897905349731445
-        Z: 0.05395831540226936
+        X: 8.717408180236816
+        Y: -18.83536148071289
+        Z: -19.237504959106445
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.274796962738037
+      Pitch: 0.9547967910766602
       Target Frame: <Fixed Frame>
-      Yaw: 4.044261455535889
+      Yaw: 5.011143207550049
     Saved: ~
 Window Geometry:
   Displays:
