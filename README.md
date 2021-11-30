@@ -1,5 +1,3 @@
-WORK IN PROGRESS. Cannot be compiled until a PR for grid_map is merged.
-
 # tree_detection
 
 ## Overview
@@ -20,7 +18,19 @@ Examples of tree detection on point clouds:
 |:--------:|------------------|--------------|
 |[![forest2](doc/forest2.jpg)](doc/forest2.jog)|[![forest3](doc/forest3.jpg)](doc/forest3.jpg)|[![forest4](doc/forest4.jpg)](doc/forest4.jpg)|
 
+## Publications
+The code for tree detection has been developed as a part of research on autonomous precision harvesting. If you are using this tree detector in academic context, please consider adding the following citation to your publication:
 
+[1] Jelavic, E., Jud, D., Egli, P. and Hutter, M., 2021. Towards Autonomous Robotic Precision Harvesting: Mapping, Localization, Planning and Control for a Legged Tree Harvester.
+ 
+    @article{jelavic2021towards,
+        title={Towards Autonomous Robotic Precision Harvesting: Mapping, Localization, Planning and Control for a Legged Tree Harvester},
+        author={Jelavic, Edo and Jud, Dominic and Egli, Pascal and Hutter, Marco},
+        journal={Field Robotics},
+        year={2021},
+        publisher={Wiley}
+    }
+   
 ## Packages in this repo
 This repository consists of following packages:
 
@@ -56,7 +66,7 @@ Build with:
 catkin build tree_detection_ros
 ```
 
-## Usage
+## Usage & Examples
 
 The example datasets can be downloaded [here](https://drive.google.com/drive/folders/1m_sRtMN5n6-ShQvnbCfedKIVpoupao5u?usp=sharing). The folder contains five forest patches.  One dataset has almost no clutter (forest3.pcd) and two have a lot of branch clutter (forest1.pcd and forest2.pcd). 
 
@@ -83,19 +93,5 @@ Note that the computation can last for up to 7-9 minutes for larger datasets (e.
 * `ground_plane_removal/is_use_median_filter` - whether to apply the median filter on the elevation map.
 * `ground_plane_removal/median_filtering_radius` - median filtering radius for the elevation map. For each cell, the filter will take the data from the neighbouring cells withing specified radius and apply the median filter. The number of neighbouring points depends on the cell size and this parameter.
 * `ground_plane_removal/median_filter_points_downsample_factor` - If one wishes to have sparser coverage, you can apply downsampling. The algorithm will calculate all the points within the specified radius and divide their number by this factor. E.g., (if there are 50 neighbouring points within the radius and the downsample factor is set to 5, 10 points will be used for median filtering).
-
-## Publications
-
-If you are using packages from tree_detection, please consider adding the following citation to your publication:
-
-[1] Jelavic, E., Jud, D., Egli, P. and Hutter, M., 2021. Towards Autonomous Robotic Precision Harvesting. arXiv preprint arXiv:2104.10110.
- 
-    @article{jelavic2021towards,  
-       title   = {Towards Autonomous Robotic Precision Harvesting},  
-       author  = {Jelavic, Edo and Jud, Dominic and Egli, Pascal and Hutter, Marco},  
-       journal = {arXiv preprint arXiv:2104.10110},  
-       year    = {2021}
-    }
-   
 
 
