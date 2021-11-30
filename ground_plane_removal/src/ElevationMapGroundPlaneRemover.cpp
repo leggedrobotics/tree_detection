@@ -34,7 +34,7 @@ void bindToRange(const grid_map::Matrix &data, grid_map::Index *id) {
 void computePointsForLocalTerrainFit(double R, const grid_map::GridMap &gridMap, std::vector<double> *xs,
 		std::vector<double> *ys, int downSamplingFactor = 1) {
 	downSamplingFactor = downSamplingFactor > 0 ? downSamplingFactor : 1; // safety check
-	const int minNumPoints = 8;
+	const int minNumPoints = 8; //todo magic
 	xs->clear();
 	ys->clear();
 	const double res = gridMap.getResolution();
