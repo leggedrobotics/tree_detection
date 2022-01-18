@@ -55,9 +55,13 @@ git clone https://github.com/ANYbotics/grid_map.git
 
 Install the ROS and library dependencies with:
 ```bash
-sudo apt install -y ros-noetic-pcl-ros ros-noetic-pcl-conversions ros-noetic-jsk-recognition-msgs ros-noetic-tf2-geometry 
+sudo apt install -y ros-noetic-pcl-ros ros-noetic-pcl-conversions ros-noetic-jsk-recognition-msgs ros-noetic-tf2-geometry-msgs 
 # OR, use rosdep in your source folder `src` 
 sudo rosdep install -yr --from-paths .
+```
+In case you want to use the detection boxes for visualization you will have to install the [jsk_rviz_plugins](http://wiki.ros.org/jsk_rviz_plugins).
+```bash
+sudo apt install ros-noetic-jsk-visualization
 ```
 Recommended to build in release mode for performance (`catkin config -DCMAKE_BUILD_TYPE=Release`)
 
@@ -65,6 +69,11 @@ Build with:
 ```bash
 catkin build tree_detection_ros
 ```
+In case you want to visualize the elevation map created by the ground plane remover, you should compile the grid_map_rviz_plugin as well:
+```bash
+catkin build grid_map_rviz_plugin
+```
+
 
 ## Usage & Examples
 
