@@ -11,6 +11,7 @@ class TreeDetectorRos: public TreeDetector {
 public:
 	explicit TreeDetectorRos(ros::NodeHandlePtr nh);
 
+	void initRos(std::string filename);
 	void detectTrees() override;
 	void setInputPointCloudFromRos(const sensor_msgs::PointCloud2 &cloud);
 	void publishTreeCylinderMarkers(const ClusterVector &clusters) const;
@@ -19,7 +20,6 @@ public:
 	void setCloudTimestamp(const ros::Time &stamp);
 private:
 
-	void initRos();
 	void inflateClusterDimensions(ClusterDimensions *dim) const;
 
 	ros::Publisher treeBoundingBoxPubliser_;

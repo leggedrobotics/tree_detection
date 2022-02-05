@@ -5,12 +5,14 @@ namespace tree_detection {
 
 TreeDetectorRos::TreeDetectorRos(ros::NodeHandlePtr nh) :
 		nh_(nh) {
-	initRos();
 }
 
-void TreeDetectorRos::initRos() {
-	treeBoundingBoxPubliser_ = nh_->advertise<jsk_recognition_msgs::BoundingBoxArray>("tree_bbs", 1, true);
-	treeCylinderPublisher_ = nh_->advertise<visualization_msgs::MarkerArray>("tree_cylinders", 1, true);
+void TreeDetectorRos::initRos(std::string filename) {
+	YAML::Node node = YAML::LoadFile(filename);
+	auto treeDetectionRos = node["tree_detection_ros"];
+
+	treeBoundingBoxPubliser_ = nh_->advertise<jsk_recognition_msgs::BoundingBoxArray>(treeDetectionRos["tree_bounding_boxes_topic_name"].as<std::string>(), 1, true);
+	treeCylinderPublisher_ = nh_->advertise<visualization_msgs::MarkerArray>(treeDetectionRos["tree_cylinders_topic_name"].as<std::string>(), 1, true);
 }
 
 void TreeDetectorRos::detectTrees() {

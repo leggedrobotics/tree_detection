@@ -23,6 +23,7 @@ int main(int argc, char **argv) {
 
 	//here create all the shizzle
 	TreeDetectorRos treeDetector(nh);
+	treeDetector.initRos(configFilePath);
 	TreeDetectionParameters treeDetectParam;
 	loadParameters(configFilePath, &treeDetectParam);
 	treeDetector.setTreeDetectionParameters(treeDetectParam);
