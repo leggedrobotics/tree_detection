@@ -58,5 +58,12 @@ tree_detection:
   tree_marker_opacity: 1.0
   is_print_discarded_clusters: false
   is_print_timing: true
+
+
+
+
+tree_detection_ros:
+  tree_bounding_boxes_topic_name: tree_bbs
+  tree_cylinders_topic_name: tree_cylinders
   
   
