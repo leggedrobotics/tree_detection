@@ -15,6 +15,7 @@ void loadParameters(const std::string &filename, ground_removal::GroundPlaneRemo
 	YAML::Node node = YAML::LoadFile(filename);
 	p->isUseVoxelGrid_ = node["ground_plane_removal"]["cropbox"]["is_use_voxel_grid"].as<bool>();
 	loadParameters(node["ground_plane_removal"]["cropbox"], &p->cropBox_);
+	loadParameters(node["ground_plane_removal"]["voxel_grid"], &p->voxelGrid_);
 
 }
 
