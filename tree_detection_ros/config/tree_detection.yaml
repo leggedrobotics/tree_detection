@@ -1,19 +1,19 @@
 ground_plane_removal:
   voxel_grid:
-    leaf_size_x: 0.02
-    leaf_size_y: 0.02
-    leaf_size_z: 0.02
+    leaf_size_x: 0.05
+    leaf_size_y: 0.05
+    leaf_size_z: 0.05
   cropbox:
     is_use_voxel_grid: true
     crop_box_minX: -100.0
     crop_box_maxX: 100.0
     crop_box_minY: -100.0
     crop_box_maxY: 100.0
-    crop_box_minZ: 0.0
+    crop_box_minZ: -2.0
     crop_box_maxZ: 20.0
   elevation_map:
-    is_use_crop_box: true
-    is_use_voxel_grid: true   # applied to point cloud
+    is_use_crop_box: false
+    is_use_voxel_grid: false   # applied to point cloud
     min_height_above_ground: 0.2
     max_height_above_ground: 3.5
     is_use_median_filter: true
@@ -22,9 +22,9 @@ ground_plane_removal:
     num_processing_threads: 7
     cloud_transform:
       translation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
+        x:  0.0
+        y:  0.0
+        z:  0.0
       rotation: #intrinsic rotation X-Y-Z (r-p-y)sequence
         r: 0.0
         p: 0.0
@@ -38,18 +38,18 @@ ground_plane_removal:
       is_remove_outliers: false
       mean_K: 10
       stddev_threshold: 1.0
-    downsampling:   # use inside elevation mapping
+    downsampling:
       is_downsample_cloud: false
       voxel_size:
         x: 0.02
         y: 0.02
         z: 0.02 
-      grid_map:
-        min_num_points_per_cell: 1
-        max_num_points_per_cell: 100000
-        resolution: 0.5
-
+    grid_map:
+      min_num_points_per_cell: 1
+      max_num_points_per_cell: 100000
+      resolution: 0.5
   
+
 
 
 # Tree specific parameters
