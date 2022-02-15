@@ -25,18 +25,7 @@ struct TreeDetectionParameters {
 	bool isPrintTiming_ = false;
 };
 
-struct CloudCroppingParameters {
-	double cropBoxMinX_ = -50.0;
-	double cropBoxMaxX_ = 50.0;
-	double cropBoxMinY_ = -50.0;
-	double cropBoxMaxY_ = 50.0;
-	double cropBoxMinZ_ = -10.0;
-	double cropBoxMaxZ_ = 20.0;
-};
-
 void loadParameters(const YAML::Node &node, TreeDetectionParameters *p);
 void loadParameters(const std::string &filename, TreeDetectionParameters *p);
-void loadParameters(const YAML::Node &node, CloudCroppingParameters *p);
-void loadParameters(const std::string &filename, CloudCroppingParameters *p);
 
 } // namespace tree_detection

@@ -31,21 +31,4 @@ void loadParameters(const std::string &filename, TreeDetectionParameters *p) {
 	loadParameters(node["tree_detection"], p);
 }
 
-void loadParameters(const YAML::Node &node, CloudCroppingParameters *p) {
-	p->cropBoxMinX_ = node["crop_box_minX"].as<double>();
-	p->cropBoxMaxX_ = node["crop_box_maxX"].as<double>();
-	p->cropBoxMinY_ = node["crop_box_minY"].as<double>();
-	p->cropBoxMaxY_ = node["crop_box_maxY"].as<double>();
-	p->cropBoxMinZ_ = node["crop_box_minZ"].as<double>();
-	p->cropBoxMaxZ_ = node["crop_box_maxZ"].as<double>();
-}
-void loadParameters(const std::string &filename, CloudCroppingParameters *p) {
-	YAML::Node node = YAML::LoadFile(filename);
-
-	if (node.IsNull()) {
-		throw std::runtime_error("Tree cloud parameters loading failed");
-	}
-	loadParameters(node["cropping"], p);
-}
-
 } // namespace tree_detection
