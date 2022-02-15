@@ -21,12 +21,20 @@ struct GroundPlaneCropBoxParameters
   double maxY_= 50.0;
   double minZ_= -10.0;
   double maxZ_= 10.0;
+};
 
+struct GroundPlaneVoxelGridParameters
+{
+  double leafSizeX_ = 0.02;
+  double leafSizeY_ = 0.02;
+  double leafSizeZ_ = 0.02;
 };
 
 
 struct GroundPlaneRemoverParam {
+	bool isUseVoxelGrid_ = true;
 	GroundPlaneCropBoxParameters cropBox_;
+	GroundPlaneVoxelGridParameters voxelGrid_;
 };
 
 struct ElevationMapGroundPlaneRemoverParam : public GroundPlaneRemoverParam {
@@ -36,9 +44,13 @@ struct ElevationMapGroundPlaneRemoverParam : public GroundPlaneRemoverParam {
 	double medianFilteringRadius_ = 2.0;
 	int medianFilterDownsampleFactor_  = 1;
 	bool isUseMedianFiltering_ = true;
+	bool isUseCropBox_ = true;
 };
 
 std::ostream& operator<<(std::ostream& out, const GroundPlaneCropBoxParameters& p);
 void loadParameters(const YAML::Node &node, GroundPlaneCropBoxParameters *p);
+
+std::ostream& operator<<(std::ostream& out, const GroundPlaneVoxelGridParameters& p);
+void loadParameters(const YAML::Node &node, GroundPlaneVoxelGridParameters *p);
 
 } // namespace ground_removal

@@ -51,6 +51,33 @@ std::ostream& operator<<(std::ostream& out, const GroundPlaneCropBoxParameters& 
   return out;
 }
 
+void loadParameters(const YAML::Node &node, GroundPlaneVoxelGridParameters *p) {
+	p->leafSizeX_ = node["leaf_size_x"].as<double>();
+	p->leafSizeY_ = node["leaf_size_y"].as<double>();
+	p->leafSizeZ_ = node["leaf_size_z"].as<double>();
+}
+
+std::ostream& operator<<(std::ostream& out, const GroundPlaneVoxelGridParameters& p) {
+  out << "┌────────────────────────────────────────────────────┐\n";
+  out << "│                GroundPlaneVoxelGridParameters      │\n";
+  out << "├─────────────────────────────────┬──────────────────┤\n";
+  out << "│ " << std::left << std::setw(31) << "size X"
+      << " │ " << std::right << std::setw(16) << std::fixed
+      << std::setprecision(4) << p.leafSizeX_  << " │\n";
+  out << "├─────────────────────────────────┼──────────────────┤\n";
+  out << "│ " << std::left << std::setw(31) << "size Y"
+      << " │ " << std::right << std::setw(16) << std::fixed
+      << std::setprecision(4) << p.leafSizeY_ << " │\n";
+  out << "├─────────────────────────────────┼──────────────────┤\n";
+  out << "│ " << std::left << std::setw(31) << "size Z"
+      << " │ " << std::right << std::setw(16) << std::fixed
+      << std::setprecision(4) << p.leafSizeZ_ << " │\n";
+  out << "├─────────────────────────────────┼──────────────────┤\n";
+
+
+  return out;
+}
+
 } // namespace ground_removal
 
 
