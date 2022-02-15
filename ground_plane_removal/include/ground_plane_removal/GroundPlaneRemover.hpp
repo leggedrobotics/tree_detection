@@ -30,6 +30,7 @@ public:
 
 protected:
 	PointCloud::Ptr applyCropBox(PointCloud::ConstPtr input, const GroundPlaneCropBoxParameters &p) const;
+	PointCloud::Ptr applyVoxelGrid(PointCloud::ConstPtr input, const GroundPlaneVoxelGridParameters &p) const;
 	PointCloud::Ptr inputCloud_;
 	PointCloud::Ptr noGroundPlaneCloud_;
 private:

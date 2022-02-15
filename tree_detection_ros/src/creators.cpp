@@ -13,6 +13,7 @@ namespace ground_removal {
 void loadParameters(const std::string &filename, ground_removal::GroundPlaneRemoverParam *p) {
 
 	YAML::Node node = YAML::LoadFile(filename);
+	p->isUseVoxelGrid_ = node["ground_plane_removal"]["cropbox"]["is_use_voxel_grid"].as<bool>();
 	loadParameters(node["ground_plane_removal"]["cropbox"], &p->cropBox_);
 
 }
@@ -20,11 +21,16 @@ void loadParameters(const std::string &filename, ground_removal::GroundPlaneRemo
 void loadParameters(const std::string &filename, ground_removal::ElevationMapGroundPlaneRemoverParam *p) {
 
 	YAML::Node node = YAML::LoadFile(filename);
+	loadParameters(node["ground_plane_removal"]["cropbox"], &p->cropBox_);
+	loadParameters(node["ground_plane_removal"]["voxel_grid"], &p->voxelGrid_);
+	
 	auto groundRemoval = node["ground_plane_removal"]["elevation_map"];
 	grid_map::grid_map_pcl::PclLoaderParameters pclLoaderParam;
 	pclLoaderParam.loadParameters(groundRemoval);
 	p->pclConverter_ = pclLoaderParam;
 
+	p->isUseCropBox_ = groundRemoval["is_use_crop_box"].as<bool>();
+	p->isUseVoxelGrid_ = groundRemoval["is_use_voxel_grid"].as<bool>();
 	p->medianFilteringRadius_  = groundRemoval["median_filtering_radius"].as<double>();
 	p->medianFilterDownsampleFactor_ = groundRemoval["median_filter_points_downsample_factor"].as<int>();
 	p->minHeightAboveGround_ = groundRemoval["min_height_above_ground"].as<double>();
@@ -52,7 +58,7 @@ std::unique_ptr<ground_removal::GroundPlaneRemover> groundRemoverFactory(const s
 		groundRemover->setParameters(groundPlaneRemovalParam);
 		ret = std::move(groundRemover);
 	} else {
-		throw std::runtime_error("Unknown groun plane removal strategy!!!");
+		throw std::runtime_error("Unknown ground plane removal strategy!!!");
 	}
 
 	return ret;

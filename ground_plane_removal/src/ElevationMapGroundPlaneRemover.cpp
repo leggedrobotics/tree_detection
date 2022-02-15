@@ -115,6 +115,14 @@ const grid_map::GridMap& ElevationMapGroundPlaneRemover::getElevationMap() const
 }
 
 void ElevationMapGroundPlaneRemover::removeGroundPlane() {
+	if (param_.isUseCropBox_){
+		inputCloud_ = applyCropBox(inputCloud_, param_.cropBox_);
+	}
+	if (param_.isUseVoxelGrid_) {
+		inputCloud_ = applyVoxelGrid(inputCloud_, param_.voxelGrid_);
+	}
+
+
 	pclToGridMap_.setInputCloud(inputCloud_);
 	pclToGridMap_.initializeGridMapGeometryFromInputCloud();
 	pclToGridMap_.addLayerFromInputCloud(elevationLayer);
