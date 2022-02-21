@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>point_cloud_preprocessing</name>
+  <version>0.5.0</version>
+  <description>Point Cloud Preprocessing</description>
+
+  <license>BSD</license>
+
+  <author email="jelavice@ethz.ch">EJ</author>
+  <maintainer email="jelavice@ethz.ch">EJr</maintainer>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>pcl</depend>
+
+</package>
