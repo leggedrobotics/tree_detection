@@ -13,16 +13,28 @@
 namespace point_cloud_preprocessing{
 
 
-class PointCloudPreprocessing {
+class PointCloudPreprocessor {
 public:
-	PointCloudPreprocessing() = default;
-	virtual ~PointCloudPreprocessing() = default;
+	PointCloudPreprocessor() = default;
+	virtual ~PointCloudPreprocessor() = default;
 
-    //  void setParameters(const GroundPlaneRemoverParam &p);
-    //  const ElevationMapGroundPlaneRemoverParam &getParameters() const;
+    void setParameters(const PointCloudPreprocessorParam &p);
+    const PointCloudPreprocessorParam &getParameters() const;
+
+	void setInputCloudPtr(PointCloud::ConstPtr inputCloud);
+	void setInputCloud(const PointCloud &inputCloud);
+
+	PointCloud::ConstPtr getPreprocessedCloudPtr() const;
+	const PointCloud &getPreprocessedCloud() const;
+
+	void performPreprocessing();
 
 private:
-	//  ElevationMapGroundPlaneRemoverParam param_;
+	PointCloud::Ptr applyCropBox(PointCloud::ConstPtr input, const CropBoxParameters &p) const;
+	PointCloud::Ptr applyVoxelGrid(PointCloud::ConstPtr input, const VoxelGridParameters &p) const;
+	PointCloud::Ptr inputCloud_;
+	PointCloud::Ptr preprocessedCloud_;
+	PointCloudPreprocessorParam params_;
 
 };
 
