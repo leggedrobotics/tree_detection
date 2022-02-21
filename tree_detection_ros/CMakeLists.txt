@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CATKIN_PACKAGE_DEPENDENCIES
   tree_detection
   ground_plane_removal
+  point_cloud_preprocessing
   pcl_conversions
   sensor_msgs
   visualization_msgs
