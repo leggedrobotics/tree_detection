@@ -28,9 +28,9 @@ void loadParameters(const YAML::Node &node, PointCloudPreprocessorParam *p) {
 		p->cropBox_.maxZ_ = node["crop_box"]["crop_box_maxZ"].as<double>();
 
 		p->isUseVoxelGrid_ = node["is_use_voxel_grid"].as<bool>();
-		p->voxelGrid_.leafSizeX_ = node["voxel_grid"]["leaf_size_x"].as<double>();
-		p->voxelGrid_.leafSizeY_ = node["voxel_grid"]["leaf_size_y"].as<double>();
-		p->voxelGrid_.leafSizeZ_ = node["voxel_grid"]["leaf_size_z"].as<double>();
+		p->voxelGrid_.leafSizeX_ = node["voxel_grid"]["voxel_grid_leafSizeX"].as<double>();
+		p->voxelGrid_.leafSizeY_ = node["voxel_grid"]["voxel_grid_leafSizeY"].as<double>();
+		p->voxelGrid_.leafSizeZ_ = node["voxel_grid"]["voxel_grid_leafSizeZ"].as<double>();
 	}
 
 std::ostream& operator<<(std::ostream& out, const PointCloudPreprocessorParam& p) {
