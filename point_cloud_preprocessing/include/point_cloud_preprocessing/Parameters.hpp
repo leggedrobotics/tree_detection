@@ -38,5 +38,6 @@ struct PointCloudPreprocessorParam {
 
 std::ostream& operator<<(std::ostream& out, const PointCloudPreprocessorParam& p);
 void loadParameters(const YAML::Node &node, PointCloudPreprocessorParam *p);
+void loadParameters(const std::string &filename, PointCloudPreprocessorParam *p);
 
 } // namespace point_cloud_preprocessing

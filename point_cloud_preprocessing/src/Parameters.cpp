@@ -9,6 +9,15 @@
 
 namespace point_cloud_preprocessing {
 
+void loadParameters(const std::string &filename, PointCloudPreprocessorParam *p) {
+	YAML::Node node = YAML::LoadFile(filename);
+
+	if (node.IsNull()) {
+		throw std::runtime_error("Point cloud preprocessing parameters loading failed");
+	}
+	loadParameters(node["point_cloud_preprocessing"], p);
+}
+
 void loadParameters(const YAML::Node &node, PointCloudPreprocessorParam *p) {
 		p->isUseCropBox_ = node["is_use_crop_box"].as<bool>();
 		p->cropBox_.minX_ = node["crop_box"]["crop_box_minX"].as<double>();
