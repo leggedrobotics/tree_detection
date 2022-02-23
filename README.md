@@ -34,6 +34,7 @@ The code for tree detection has been developed as a part of research on autonomo
 ## Packages in this repo
 This repository consists of following packages:
 
+* ***point_cloud_preprocessig*** is a package used to preprocess the point cloud before removing the ground plane
 * ***ground_plane_removal*** is a lightweight package for ground plane removal. 
 * ***tree_detection*** implements the core algorithm for tree detection. 
 * ***tree_detection_ros*** adds visualization and I/O handling for easier usage. This package is tightly integrated with ROS.
@@ -91,6 +92,10 @@ roslaunch tree_detection_ros tree_detection.launch
 The node publishes the input pointcloud, the pointcloud with the ground removed and the elevation map used to remove the ground plane. The detected trees will be marked with green cylinders and bounding boxes. The visualization should appar in the Rviz window.
 
 Note that the computation can last for up to 7-9 minutes for larger datasets (e.g. forest4.pcd and forest5.pcd). This can be shortened with different tuning, downsampling or voxelizing the point clouds.
+
+If the choice is made to use the point cloud preprocessing package, special care needs to be taken that the voxel grid leaf size is chosen big enough. (Otherwise, there is an integer overflow in the pcl library and a warning is popping up in the terminal.) In addition, if the ground plane is removed using the elevation map approach, it is important, that the crop box of the preprocessing is not removing partially the point cloud representing the ground plane, else the elevation map will not correctly be generated. This could result to the fact that trees are not detected in the point cloud.
+
+In general, the preprocessing should only be applied to point clouds, which either have an near infinite expansion and/or point which are extremely close to each other. Both phemomena decrease the processing speed of the tree detection significally! The infinite expansion problem can be handled using the crop box in the preprocessing package. The close point problem can be solved using the voxel grid filter in the same package.
 
 
 ## Parameters
