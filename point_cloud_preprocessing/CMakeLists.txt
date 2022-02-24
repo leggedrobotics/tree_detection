@@ -22,12 +22,6 @@ find_package(catkin REQUIRED
 
 find_package(PCL 1.10 REQUIRED)
 
-find_package(OpenMP QUIET)
-if (OpenMP_FOUND)
-  add_compile_options("${OpenMP_CXX_FLAGS}")
-  add_definitions(-DGROUND_PLANE_REMOVAL_OPENMP_FOUND=${OpenMP_FOUND})
-endif()
-
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -37,7 +31,6 @@ catkin_package(
   LIBRARIES
     ${PROJECT_NAME}
     yaml-cpp
-    ${OpenMP_CXX_LIBRARIES}
   DEPENDS
     PCL
 )
@@ -52,7 +45,6 @@ include_directories(
   SYSTEM
     ${PCL_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
-    ${OpenMP_CXX_INCLUDE_DIRS}
 )
 
 link_directories( #only needed for pcl
@@ -71,7 +63,6 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${PCL_COMMON_LIBRARIES}
   ${PCL_IO_LIBRARIES}
-  ${OpenMP_CXX_LIBRARIES}
 )
 
 #############
