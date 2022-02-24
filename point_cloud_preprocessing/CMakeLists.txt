@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(tree_detection_ros)
+project(point_cloud_preprocessing)
 
 set(CMAKE_CXX_STANDARD 14)
 add_compile_options(-Wall -Wextra -Wpedantic)
@@ -7,29 +7,20 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CATKIN_PACKAGE_DEPENDENCIES
-  tree_detection
-  ground_plane_removal
-  point_cloud_preprocessing
-  pcl_conversions
-  sensor_msgs
-  visualization_msgs
-  roscpp
-  roslib
-  jsk_recognition_msgs
-)
 
-set (SRC_FILES
-  src/TreeDetectorRos.cpp
-  src/helpers.cpp
-  src/creators.cpp
-)
 
+set(SRC_FILES
+  src/PointCloudPreprocessor.cpp
+  src/Parameters.cpp
+)
 
 find_package(catkin REQUIRED
   COMPONENTS
-    ${CATKIN_PACKAGE_DEPENDENCIES}
+    ${CATKIN_REQUIRED_COMPONENTS}
 )
+
+
+find_package(PCL 1.10 REQUIRED)
 
 ###################################
 ## catkin specific configuration ##
@@ -40,8 +31,6 @@ catkin_package(
   LIBRARIES
     ${PROJECT_NAME}
     yaml-cpp
-  CATKIN_DEPENDS
-    ${CATKIN_PACKAGE_DEPENDENCIES}
   DEPENDS
     PCL
 )
@@ -74,15 +63,6 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${PCL_COMMON_LIBRARIES}
   ${PCL_IO_LIBRARIES}
-)
-
-add_executable(tree_detection_node
-  src/tree_detection_node.cpp
-)
-
-target_link_libraries(tree_detection_node
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
 )
 
 #############

@@ -15,6 +15,7 @@
 	<buildtool_depend>catkin</buildtool_depend>
 	<depend>tree_detection</depend>
 	<depend>ground_plane_removal</depend>
+	<depend>point_cloud_preprocessing</depend>
 	<depend>pcl_conversions</depend>
 	<depend>sensor_msgs</depend>
 	<depend>visualization_msgs</depend>

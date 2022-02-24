@@ -1,6 +1,8 @@
 #include "tree_detection_ros/TreeDetectorRos.hpp"
 #include "tree_detection_ros/helpers.hpp"
 #include "tree_detection_ros/creators.hpp"
+#include "point_cloud_preprocessing/Parameters.hpp"
+#include "point_cloud_preprocessing/PointCloudPreprocessor.hpp"
 
 
 int main(int argc, char **argv) {
@@ -30,11 +32,19 @@ int main(int argc, char **argv) {
 	const std::string groundRemovalStrategy = nh->param<std::string>("ground_removal_strategy", "");
 	std::shared_ptr<ground_removal::GroundPlaneRemover> groundRemover = ground_removal::groundRemoverFactory(groundRemovalStrategy,
 			configFilePath,nh);
+	std::unique_ptr<point_cloud_preprocessing::PointCloudPreprocessor> pointCloudPreprocessor(new point_cloud_preprocessing::PointCloudPreprocessor());
+	point_cloud_preprocessing::PointCloudPreprocessorParam pointCloudPreprocessorParam;
+	point_cloud_preprocessing::loadParameters(configFilePath, &pointCloudPreprocessorParam);
+	pointCloudPreprocessor->setParameters(pointCloudPreprocessorParam);
 
+	//here preprocess point cloud
+	pointCloudPreprocessor->setInputCloud(*loadedCloud);
+	pointCloudPreprocessor->performPreprocessing();
+	PointCloud::ConstPtr preprocessedCloud = pointCloudPreprocessor->getPreprocessedCloudPtr();
 
 	//here crop the ground plane
 	const auto startTime = std::chrono::steady_clock::now();
-	groundRemover->setInputCloud(*loadedCloud);
+	groundRemover->setInputCloud(*preprocessedCloud);
 	groundRemover->removeGroundPlane();
 	printTimeElapsed(startTime,"Time elapsed for ground removal: ");
 

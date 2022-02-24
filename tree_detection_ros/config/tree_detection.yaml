@@ -1,3 +1,17 @@
+point_cloud_preprocessing:
+  is_use_crop_box: false
+  crop_box: 
+    crop_box_minX: -100.0
+    crop_box_maxX: 100.0
+    crop_box_minY: -100.0
+    crop_box_maxY: 100.0
+    crop_box_minZ: 0.0
+    crop_box_maxZ: 20.0
+  is_use_voxel_grid: false
+  voxel_grid:
+    voxel_grid_leafSizeX: 0.02
+    voxel_grid_leafSizeY: 0.02
+    voxel_grid_leafSizeZ: 0.02
 ground_plane_removal:
   cropbox: 
     crop_box_minX: -100.0
