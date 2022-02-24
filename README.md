@@ -95,7 +95,7 @@ Note that the computation can last for up to 7-9 minutes for larger datasets (e.
 
 If the choice is made to use the point cloud preprocessing package, special care needs to be taken that the voxel grid leaf size is chosen big enough. (Otherwise, there is an integer overflow in the pcl library and a warning is popping up in the terminal.) In addition, if the ground plane is removed using the elevation map approach, it is important, that the crop box of the preprocessing is not removing partially the point cloud representing the ground plane, else the elevation map will not correctly be generated. This could result to the fact that trees are not detected in the point cloud.
 
-In general, the preprocessing should only be applied to point clouds, which either have an near infinite expansion and/or point which are extremely close to each other. Both phemomena decrease the processing speed of the tree detection significally! The infinite expansion problem can be handled using the crop box in the preprocessing package. The close point problem can be solved using the voxel grid filter in the same package.
+In general, the preprocessing should only be applied to point clouds, which either have points far away from the origin and/or which are dense. Both phemomena decrease the processing speed of the tree detection significally! The first phenomenum can be handled using the crop box in the preprocessing package. The second one can be tackled using the voxel grid filter in the same package.
 
 
 ## Parameters
