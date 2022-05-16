@@ -166,4 +166,13 @@ void ElevationMapGroundPlaneRemover::snapToMapLimits(const grid_map::GridMap &gm
 	*y = (snapped.y() - p0.y()) * hackingFactor + p0.y();
 }
 
+void ElevationMapGroundPlaneRemover::setFilterCloudPtr(PointCloud::ConstPtr filterCloud) {
+  setFilterCloud(*filterCloud);
+}
+
+void ElevationMapGroundPlaneRemover::setFilterCloud(const PointCloud& filterCloud) {
+  filterCloud_.reset(new PointCloud);
+  *filterCloud_ = filterCloud;
+}
+
 }  // namespace ground_removal

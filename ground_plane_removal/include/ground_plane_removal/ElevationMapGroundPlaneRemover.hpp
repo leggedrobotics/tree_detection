@@ -21,10 +21,12 @@ public:
 	explicit ElevationMapGroundPlaneRemover(ros::NodeHandle *nh);
 	virtual ~ElevationMapGroundPlaneRemover() = default;
 
-	 void removeGroundPlane() override;
-     void setParameters(const GroundPlaneRemoverParam &p);
-     const ElevationMapGroundPlaneRemoverParam &getParameters() const;
-     const grid_map::GridMap &getElevationMap() const;
+	void removeGroundPlane() override;
+  void setParameters(const GroundPlaneRemoverParam &p);
+  const ElevationMapGroundPlaneRemoverParam &getParameters() const;
+  const grid_map::GridMap &getElevationMap() const;
+  void setFilterCloudPtr(PointCloud::ConstPtr filterCloud);
+  void setFilterCloud(const PointCloud& filterCloud);
 
 private:
 
@@ -34,6 +36,7 @@ private:
 	 grid_map::GridMapPclLoader pclToGridMap_;
 	 grid_map::GridMap elevationMap_;
 	 ros::NodeHandle *nh_ = nullptr;
+   PointCloud::Ptr filterCloud_;
 
 };
 
