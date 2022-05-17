@@ -36,7 +36,7 @@ private:
 	 grid_map::GridMapPclLoader pclToGridMap_;
 	 grid_map::GridMap elevationMap_;
 	 ros::NodeHandle *nh_ = nullptr;
-   PointCloud::Ptr filterCloud_;
+     PointCloud::Ptr filterCloud_;
 
 };
 
