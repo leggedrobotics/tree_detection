@@ -53,6 +53,7 @@ Clone the following dependencies:
 # in your source folder `src`
 git clone https://github.com/ANYbotics/grid_map.git
 ```
+Installing the grid map from apt might not work (you'll get compiler errors). Recommended way is to build the grid map from source.
 
 Install the ROS and library dependencies with:
 ```bash
