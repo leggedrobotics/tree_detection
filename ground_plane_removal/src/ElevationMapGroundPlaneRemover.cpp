@@ -128,6 +128,7 @@ void ElevationMapGroundPlaneRemover::removeGroundPlane() {
 	noGroundPlaneCloud_.reset(new PointCloud);
 	noGroundPlaneCloud_->points.reserve(filterCloud_->size());
 //	const auto &data = gridMap.get(elevationLayer);
+	int numPts = 0;
 	for (int i = 0; i < filterCloud_->size(); ++i) {
 		double x = filterCloud_->points[i].x;
 		double y = filterCloud_->points[i].y;
@@ -139,7 +140,9 @@ void ElevationMapGroundPlaneRemover::removeGroundPlane() {
 			continue;
 		}
 		noGroundPlaneCloud_->points.push_back(filterCloud_->points[i]);
+		numPts++;
 	}
+	noGroundPlaneCloud_->points.resize(numPts);
 	noGroundPlaneCloud_->width = noGroundPlaneCloud_->points.size();
 	noGroundPlaneCloud_->height = 1;
 	noGroundPlaneCloud_->is_dense = true;
