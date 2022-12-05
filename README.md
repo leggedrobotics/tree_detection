@@ -53,7 +53,7 @@ Clone the following dependencies:
 # in your source folder `src`
 git clone https://github.com/ANYbotics/grid_map.git
 ```
-Installing the grid map from apt might not work (you'll get compiler errors). Recommended way is to build the grid map from source.
+Installing the grid map from apt might not work (you'll get compiler errors). Recommended way is to build the grid map from source. In case you built the grid map from source, but you're still getting errors, most likely the Cmake is finding the system install version of the grid map. Try cleaning your workspace and rebuilding `grid_map_pcl` from source first, as described [here](https://github.com/leggedrobotics/tree_detection/issues/7).
 
 Install the ROS and library dependencies with:
 ```bash
